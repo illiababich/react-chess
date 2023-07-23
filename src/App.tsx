@@ -8,11 +8,12 @@ function App() {
 
   useEffect(() => {
     resetBoard()
-  })
+  }, [])
 
   function resetBoard() {
     const newBoard = new Board();
     newBoard.initCells();
+    newBoard.placeFigures();
     setBoard(newBoard);
   }
 
@@ -27,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+// TODO: play as black
