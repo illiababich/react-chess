@@ -4,6 +4,7 @@ import BoardComponent from "./components/BoardComponent";
 import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
+import CapturedPieces from "./components/CapturedPieces";
 
 function App() {
   const [board, setBoard] = useState(new Board());
@@ -35,6 +36,10 @@ function App() {
       currentPlayer={currentPlayer}
       nextTurn={nextTurn}
       />
+      <div>
+        <CapturedPieces title={"Captured white pieces"} pieces={board.capturedWhitePieces}/>
+        <CapturedPieces title={"Captured black pieces"} pieces={board.capturedBlackPieces}/>
+      </div>
     </div>
   );
 }

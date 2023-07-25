@@ -85,9 +85,18 @@ export class Cell {
     this.figure.cell = this;
   }
 
+  private addCapturedPiece(figure: Figure) {
+    figure.color === Colors.BLACK ?
+      this.board.capturedBlackPieces.push(figure) :
+      this.board.capturedWhitePieces.push(figure);
+  }
+
   movePiece(target: Cell) {
     if(this.figure && this.figure?.canMoveTo(target)) {
       this.figure.movePiece(target);
+      if(target.figure) {
+        this.addCapturedPiece(target.figure);
+      }
       target.setPiece(this.figure);
       this.figure = null;
     }
