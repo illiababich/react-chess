@@ -35,7 +35,5 @@ export class Figure {
     return target.figure?.name !== FigureNames.KING;
   }
 
-  movePiece(target : Cell) {
-
-  }
+  movePiece(target : Cell) {  }
 }

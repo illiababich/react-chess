@@ -56,7 +56,7 @@ export class Cell {
     const max = Math.max(this.y, target.y);
 
     for (let i = min + 1; i < max; i++) {
-      if(this.board.getCell(this.x, i).isEmpty()) {
+      if(!this.board.getCell(this.x, i).isEmpty()) {
         return false;
       }
     }
