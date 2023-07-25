@@ -3,15 +3,17 @@ import { Board } from "../models/Board";
 import CellComponent from "./CellComponent";
 import { Cell } from "../models/Cell";
 import { Player } from "../models/Player";
+import TimerComponent from "./TimerComponent";
 
 interface BoardProps {
   board: Board;
   setBoard: (board: Board) => void;
   currentPlayer: Player | null;
   nextTurn: () => void;
+  resetBoard: () => void;
 }
 
-const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, nextTurn}) => {
+const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, nextTurn, resetBoard}) => {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
   function selectCell(cell : Cell) {
@@ -49,6 +51,7 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, nextTur
 
   return (
     <div>
+      <TimerComponent currentPlayer={currentPlayer} restartTheGame={resetBoard}/>
       <h2>Turn of: {currentPlayer?.color}</h2>
       <div className={"board"}>
         {board.cells.map((row, index) =>

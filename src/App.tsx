@@ -35,6 +35,7 @@ function App() {
       setBoard={setBoard}
       currentPlayer={currentPlayer}
       nextTurn={nextTurn}
+      resetBoard={resetBoard}
       />
       <div>
         <CapturedPieces title={"Captured white pieces"} pieces={board.capturedWhitePieces}/>
