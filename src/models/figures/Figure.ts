@@ -28,7 +28,7 @@ export class Figure {
     this.id = Math.random();
   }
 
-  moveTo(target: Cell) : boolean {
+  canMoveTo(target: Cell) : boolean {
     console.log('highlighted');
     if(target.figure?.color === this.color)
       return false;

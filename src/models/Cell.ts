@@ -3,12 +3,12 @@ import { Figure } from "./figures/Figure";
 import { Board } from "./Board";
 
 export class Cell {
-  readonly x: number;
-  readonly y: number;
-  readonly color: Colors;
+  x: number;
+  y: number;
+  color: Colors;
   figure: Figure | null;
   board: Board;
-  isCellEmpty: boolean;
+  isAvailableForMove: boolean;
   id: number;
 
   constructor(x: number, y: number, color: Colors, board: Board, figure: Figure | null) {
@@ -17,7 +17,7 @@ export class Cell {
     this.color = color;
     this.figure = figure;
     this.board = board;
-    this.isCellEmpty = false;
+    this.isAvailableForMove = false;
     this.id = Math.random();
   }
 
@@ -70,8 +70,8 @@ export class Cell {
     if(absY !== absX)
       return false;
 
-    const dy = this.y < target.y ? 1 : -1
-    const dx = this.x < target.x ? 1 : -1
+    const dy = this.y < target.y ? 1 : -1;
+    const dx = this.x < target.x ? 1 : -1;
 
     for (let i = 1; i < absY; i++) {
       if(!this.board.getCell(this.x + dx * i, this.y + dy * i).isEmpty())
@@ -80,10 +80,15 @@ export class Cell {
     return true;
   }
 
+  setPiece(figure: Figure) {
+    this.figure = figure;
+    this.figure.cell = this;
+  }
+
   movePiece(target: Cell) {
-    if(this.figure && this.figure?.moveTo(target)) {
+    if(this.figure && this.figure?.canMoveTo(target)) {
       this.figure.movePiece(target);
-      target.figure = this.figure;
+      target.setPiece(this.figure);
       this.figure = null;
     }
   }

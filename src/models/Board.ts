@@ -29,11 +29,23 @@ export class Board {
   }
 
   public highlightAvailableCells(selectedCell: Cell | null) {
+    // Reset the isAvailableForMove property for all cells to false
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
-        target.isCellEmpty = !!selectedCell?.figure?.moveTo(target);
+        target.isAvailableForMove = false;
+      }
+    }
+
+    // Highlight the new available moves for the selected piece
+    if (selectedCell) {
+      for (let i = 0; i < this.cells.length; i++) {
+        const row = this.cells[i];
+        for (let j = 0; j < row.length; j++) {
+          const target = row[j];
+          target.isAvailableForMove = !!selectedCell?.figure?.canMoveTo(target);
+        }
       }
     }
   }

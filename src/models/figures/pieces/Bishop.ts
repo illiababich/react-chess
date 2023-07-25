@@ -11,13 +11,10 @@ export class Bishop extends Figure {
     this.name = FigureNames.BISHOP;
   }
 
-  // moveTo(target: Cell): boolean {
-  //   if (!super.moveTo(target)) {
-  //     return false;
-  //   }
-  //   if(this.cell.isVerticalEmpty(target)) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  canMoveTo(target: Cell): boolean {
+    if (!super.canMoveTo(target)) {
+      return false;
+    }
+    return this.cell.isDiagonalEmpty(target);
+  }
 }

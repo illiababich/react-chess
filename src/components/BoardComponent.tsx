@@ -15,7 +15,7 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard}) => {
     console.log(cell)
     if (selectedCell?.figure) {
       if (selectedCell !== cell) {
-        if (selectedCell.figure?.moveTo(cell)) {
+        if (selectedCell.figure?.canMoveTo(cell)) {
           selectedCell.movePiece(cell);
           setSelectedCell(null);
         } else {
@@ -27,10 +27,6 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard}) => {
     } else {
       setSelectedCell(cell);
     }
-    // if(cell.figure) {
-    //   setSelectedCell(cell);
-    //   console.log("changed color")
-    // }
   }
 
   useEffect(() => {
