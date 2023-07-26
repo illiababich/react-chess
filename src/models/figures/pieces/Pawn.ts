@@ -6,7 +6,7 @@ import imageWhite from '../../../assets/wp.png';
 
 export class Pawn extends Figure {
 
-  isFirstStep: boolean = true;
+  isFirstMove: boolean = true;
 
   constructor(color : Colors, cell : Cell) {
     super(color, cell);
@@ -19,9 +19,9 @@ export class Pawn extends Figure {
       return false;
     }
     const direction = this.cell.figure?.color === Colors.BLACK ? 1 : - 1;
-    const firstStepDirection = this.cell.figure?.color === Colors.BLACK ? 2 : - 2;
+    const firstStepDirection = direction * 2;
 
-    if (((target.y === this.cell.y + direction) || this.isFirstStep && (target.y === this.cell.y + firstStepDirection))
+    if (((target.y === this.cell.y + direction) || this.isFirstMove && (target.y === this.cell.y + firstStepDirection))
         && target.x === this.cell.x
         && this.cell.board.getCell(target.x, target.y).isEmpty()) {
       return true;
@@ -35,6 +35,6 @@ export class Pawn extends Figure {
 
   movePiece(target: Cell) {
     super.movePiece(target);
-    this.isFirstStep = false;
+    this.isFirstMove = false;
   }
 }
