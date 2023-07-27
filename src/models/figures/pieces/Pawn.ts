@@ -21,16 +21,15 @@ export class Pawn extends Figure {
     const direction = this.cell.figure?.color === Colors.BLACK ? 1 : - 1;
     const firstStepDirection = direction * 2;
 
-    if (((target.y === this.cell.y + direction) || this.isFirstMove && (target.y === this.cell.y + firstStepDirection))
-        && target.x === this.cell.x
-        && this.cell.board.getCell(target.x, target.y).isEmpty()) {
+    if (((target.y === this.cell.y + direction)
+        || (this.isFirstMove && (target.y === this.cell.y + firstStepDirection)))
+        && target.x === this.cell.x) {
       return true;
     }
 
-    return target.y ===
-      this.cell.y + direction &&
-      (target.x === this.cell.x + 1 || target.x === this.cell.x - 1) &&
-      this.cell.isEnemy(target);
+    return target.y === this.cell.y + direction
+      && (target.x === this.cell.x + 1 || target.x === this.cell.x - 1)
+      && this.cell.isEnemy(target);
   }
 
   movePiece(target: Cell) {

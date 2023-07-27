@@ -5,6 +5,9 @@ import imageBlack from '../../../assets/bk.png';
 import imageWhite from '../../../assets/wk.png';
 
 export class King extends Figure {
+
+  isFirstMove: boolean = true;
+
   constructor(color : Colors, cell : Cell) {
     super(color, cell);
     this.image = color === Colors.BLACK ? imageBlack : imageWhite;
@@ -19,5 +22,10 @@ export class King extends Figure {
     const dy = Math.abs(this.cell.y - target.y);
 
     return (dx === 1 && dy === 1) || (dx === 0 && dy === 1) || (dx === 1 && dy === 0);
+  }
+
+  movePiece(target: Cell) {
+    super.movePiece(target);
+    this.isFirstMove = false;
   }
 }

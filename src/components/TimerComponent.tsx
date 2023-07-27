@@ -23,7 +23,7 @@ const TimerComponent:FC<TimerProps> = ({currentPlayer, restartTheGame}) => {
 
     timer.current = setInterval(() =>
       currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer() : decrementBlackTimer(), 1000);
-   }
+  }
 
   function decrementBlackTimer() {
     setBlackTime(prevState => prevState - 1);

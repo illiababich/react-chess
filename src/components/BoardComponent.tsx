@@ -20,6 +20,7 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, nextTur
     console.log(cell)
     if (selectedCell?.figure) {
       if (selectedCell !== cell) {
+        setSelectedCell(cell);
         if (selectedCell.figure?.canMoveTo(cell)) {
           selectedCell.movePiece(cell);
           nextTurn();
